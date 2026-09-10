@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "status": {"type": "string", "enum": ["completed", "partial", "blocked"]},
+    "summary": {"type": "string"},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim": {"type": "string"},
+          "source": {"type": "string"},
+          "support": {"type": "string"},
+          "limitation": {"type": "string"}
+        },
+        "required": ["claim", "source", "support"]
+      }
+    },
+    "artifacts": {"type": "array", "items": {"type": "string"}},
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {"command": {"type": "string"}, "outcome": {"type": "string"}},
+        "required": ["command", "outcome"]
+      }
+    },
+    "blockers": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["status", "summary", "evidence"]
+}
